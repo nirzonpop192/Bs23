@@ -3,11 +3,14 @@ package com.example.bs23
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import javax.inject.Singleton
 
 @Singleton
 object NetworkManager {
+
     fun isNetConnectionAvailable(context: Context): Boolean {
 
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
