@@ -9,8 +9,7 @@ import javax.inject.Singleton
 @Singleton
 class HomeRepository @Inject constructor( private val api:GitHubApi) {
 
-    suspend fun fetchRepositoryApi(query: String , sort: String, order: String, per_page: Int,
-        page: Int ): GitHubResponse {
+    suspend fun fetchRepositoryApi(query: String , sort: String, order: String, per_page: Int, page: Int ): GitHubResponse {
         return api.getRepository(query , sort, order, per_page, page)
     }
 
