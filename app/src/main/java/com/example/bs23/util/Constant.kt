@@ -1,4 +1,7 @@
 package com.example.bs23.util
 
-class Constant {
+object Constant {
+
+    const val DEBUG_MODE=true;
+
 }

@@ -1,4 +1,4 @@
-package com.example.bs23
+package com.example.bs23.util
 
 import android.content.Context
 import android.net.ConnectivityManager
