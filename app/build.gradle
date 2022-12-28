@@ -24,6 +24,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug{
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+        }
+
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -32,6 +39,23 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+//    productFlavors{
+//
+//        dev{
+//            applicationId "com.example.bs23.dev"
+//        }
+//
+//        qa{
+//            applicationId "com.example.bs23.qa"
+//
+//        }
+//
+//        prod{
+//            applicationId "com.example.bs23.prod"
+//
+//        }
+//    }
 }
 
 dependencies {

@@ -1,8 +1,7 @@
 package com.example.bs23.di
 
-import android.os.Build
 import android.util.Log
-import com.example.bs23.GitHubApi
+import com.example.bs23.data.remote.GitHubApi
 import com.example.bs23.util.Constant
 import dagger.Module
 import dagger.Provides
@@ -12,7 +11,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 
@@ -21,7 +19,7 @@ import javax.inject.Singleton
 object ApiModule {
 
     private val TAG=ApiModule::class.java.name
-    private const val BASE_URL=""
+    private const val BASE_URL="https://api.github.com/"
 
     @Provides
     @Singleton
@@ -60,7 +58,7 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideGitHubApi(retrofit: Retrofit):GitHubApi{
+    fun provideGitHubApi(retrofit: Retrofit): GitHubApi {
             return retrofit.create(GitHubApi::class.java)
     }
 
