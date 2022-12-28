@@ -1,4 +1,4 @@
-package com.example.bs23
+package com.example.bs23.model
 
 data class Item(
     val allow_forking: Boolean,

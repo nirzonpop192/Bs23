@@ -1,4 +1,4 @@
-package com.example.bs23
+package com.example.bs23.model
 
 data class GitHubResponse(
     val incomplete_results: Boolean,
