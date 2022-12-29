@@ -8,7 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 import javax.inject.Provider
 
-@Database(version = 1, entities = [Item::class/*,License::class,Owner::class*/])
+@Database(version = 2, entities = [Item::class/*,License::class,Owner::class*/])
 abstract class GitRepositoryDataBase :RoomDatabase () {
 
 

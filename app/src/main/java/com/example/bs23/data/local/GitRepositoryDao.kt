@@ -10,10 +10,10 @@ interface GitRepositoryDao {
     fun getRepository() : LiveData<List<Item>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(article: Item) : Long
+    suspend fun insert(repositoryItem: Item) : Long
 
     @Delete
-    suspend fun delete(article: Item)
+    suspend fun delete(repositoryItem: Item)
 
 //    @Query("DELETE FROM tbRepository")
 //    suspend fun deleteAllArticles()
