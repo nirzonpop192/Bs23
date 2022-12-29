@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bs23.data.model.GitHubResponse
+import com.example.bs23.data.model.Item
 import com.example.bs23.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -27,5 +28,11 @@ class HomeViewModel @Inject constructor( private val repository: HomeRepository 
 //            }
 
         }
+    }
+
+    suspend fun addRepository(repositoryItem: Item){
+        Log.e("HomeViewModel","in loop")
+       repository.insertRepository(repositoryItem)
+
     }
 }

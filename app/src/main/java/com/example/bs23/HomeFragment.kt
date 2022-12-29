@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewModelScope
 import com.example.bs23.databinding.FragmentHomeBinding
 import com.example.bs23.view_model.HomeViewModel
 import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -45,6 +47,10 @@ class HomeFragment : Fragment() {
                 for (repositoryItem in it.items){
                     Log.e("dim","in loop")
                     //repository.insertRepository(repositoryItem)
+                    viewModel.viewModelScope.launch {
+                        viewModel.addRepository(repositoryItem)
+                    }
+
                 }
             }
         }

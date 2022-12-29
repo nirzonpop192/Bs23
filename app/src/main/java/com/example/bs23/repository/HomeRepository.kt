@@ -20,9 +20,9 @@ class HomeRepository @Inject constructor( private val api:GitHubApi ,
         return api.getRepository(query , sort, order, per_page, page)
     }
 
-//    suspend fun insertRepository(repository: Item){
-//       val  row=doa.insert(repository)
-//        Log.e(TAG,"row effected "+row)
-//    }
+    suspend fun insertRepository(repository: Item){
+       val  row=doa.insert(repository)
+        Log.e(TAG,"row effected "+row)
+    }
 
 }
