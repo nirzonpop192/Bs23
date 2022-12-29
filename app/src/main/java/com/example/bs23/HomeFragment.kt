@@ -40,8 +40,13 @@ class HomeFragment : Fragment() {
 
         viewModel.response.observe(viewLifecycleOwner) {
             Log.e(TAG, it.toString())
-
-
+            Log.e("dim","in over")
+            if(it.items.size>0){
+                for (repositoryItem in it.items){
+                    Log.e("dim","in loop")
+                    //repository.insertRepository(repositoryItem)
+                }
+            }
         }
     }
 

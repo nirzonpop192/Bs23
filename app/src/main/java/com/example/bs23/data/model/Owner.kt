@@ -1,5 +1,8 @@
 package com.example.bs23.data.model
 
+import androidx.room.Entity
+
+//@Entity(tableName = "Owner")
 data class Owner(
     val avatar_url: String,
     val events_url: String,
