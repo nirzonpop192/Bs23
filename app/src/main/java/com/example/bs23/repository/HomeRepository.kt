@@ -30,7 +30,7 @@ class HomeRepository @Inject constructor(
      fun fetchRepositoryApi(query: String , sort: String, order: String,
                                    per_page: Int )= Pager(
          config = PagingConfig(pageSize = 10, maxSize = 50),
-         pagingSourceFactory = {RepoPagingSource(api,query , sort, order, per_page)}
+         pagingSourceFactory = {RepoPagingSource(api,doa,query , sort, order, per_page)}
 
      ).liveData
 

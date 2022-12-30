@@ -1,6 +1,5 @@
 package com.example.bs23.view_model
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,11 +16,14 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor( private val repository: HomeRepository ) :ViewModel(){
 
+ companion object{
+     var response : MutableLiveData<GitHubResponse> =MutableLiveData()
 
-     var responseLiveData : MutableLiveData<GitHubResponse> =MutableLiveData()
-     var repositoriesLiveData : MutableLiveData<List<Item>> =MutableLiveData()
-    lateinit var list:LiveData<PagingData<Item>>
-    fun fetRepositoryApi(query: String , sort: String, order: String, per_page: Int, page: Int) {
+ }
+//     var responseLiveData : MutableLiveData<GitHubResponse> =MutableLiveData()
+     var offLineRepositoriesList : MutableLiveData<List<Item>> =MutableLiveData()
+    lateinit var pagingDataList:LiveData<PagingData<Item>>
+/*    fun fetRepositoryApi(query: String , sort: String, order: String, per_page: Int, page: Int) {
 
         viewModelScope.launch {
             responseLiveData.value=repository.fetchRepositoryApi(query , sort, order, per_page, page)
@@ -30,7 +32,7 @@ class HomeViewModel @Inject constructor( private val repository: HomeRepository 
         }
 
 
-    }
+    }*/
 
      fun addRepository(repositoryItem: Item){
          viewModelScope.launch {
@@ -41,14 +43,17 @@ class HomeViewModel @Inject constructor( private val repository: HomeRepository 
     }
 
     fun  getRepositories(){
-        repositoriesLiveData.value=repository.getRepositories()
+        offLineRepositoriesList.value=repository.getRepositories()
     }
 
-
+    /**
+     * load method invoke the pager
+     */
     fun loadData(query: String , sort: String, order: String, per_page: Int) {
+        viewModelScope.launch {
+            pagingDataList=repository.fetchRepositoryApi(query , sort, order, per_page).cachedIn(viewModelScope)
 
-         list=repository.fetchRepositoryApi(query , sort, order, per_page).cachedIn(viewModelScope)
-
+        }
 
     }
 

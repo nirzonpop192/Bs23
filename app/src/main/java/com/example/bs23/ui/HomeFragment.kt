@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bs23.adapter.RepositoryPagingAdapter
 import com.example.bs23.databinding.FragmentHomeBinding
-import com.example.bs23.util.NetworkManager
 import com.example.bs23.view_model.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -53,12 +52,27 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        viewModel.loadData("Android","stars","desc",15)
+        viewModel.loadData("Android","stars","desc",10)
 
-    viewModel.list.observe(viewLifecycleOwner){
+    viewModel.pagingDataList.observe(viewLifecycleOwner){
         Log.e(TAG, " observing ")
         mAdapter.submitData(lifecycle, it)
+        Log.e(TAG, "onResume:  size of adapter ${mAdapter.snapshot().items.size}", )
+
     }
+        HomeViewModel.response.observe(viewLifecycleOwner){
+            Log.e(TAG, "onResume:  size of dim ${it.items.size}", )
+
+            if(it.items.isNotEmpty()){
+                for (repositoryItem in it.items){
+                    Log.e(TAG,"in loop")
+                    viewModel.addRepository(repositoryItem)
+
+
+                }
+            }
+
+        }
     //        viewModel.responseLiveData.observe(viewLifecycleOwner) {
 //            Log.e(TAG, it.toString())
 //            Log.e(TAG,"in over")

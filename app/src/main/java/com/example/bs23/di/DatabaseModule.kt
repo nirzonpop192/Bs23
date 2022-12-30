@@ -25,6 +25,7 @@ class DatabaseModule {
         return Room.databaseBuilder(application,GitRepositoryDataBase::class.java,DATA_BASE_NAME)
             .fallbackToDestructiveMigration()
             .addCallback(callback)
+            .allowMainThreadQueries()
             .build()
     }
 
