@@ -1,9 +1,12 @@
 package com.example.bs23.view_model
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.bs23.data.model.GitHubResponse
 import com.example.bs23.data.model.Item
 import com.example.bs23.repository.HomeRepository
@@ -15,24 +18,38 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor( private val repository: HomeRepository ) :ViewModel(){
 
 
-     var response : MutableLiveData<GitHubResponse> =MutableLiveData()
-
+     var responseLiveData : MutableLiveData<GitHubResponse> =MutableLiveData()
+     var repositoriesLiveData : MutableLiveData<List<Item>> =MutableLiveData()
+    lateinit var list:LiveData<PagingData<Item>>
     fun fetRepositoryApi(query: String , sort: String, order: String, per_page: Int, page: Int) {
+
         viewModelScope.launch {
-            response.value=repository.fetchRepositoryApi(query , sort, order, per_page, page)
-//            if(response.value!!.items.size>0){
-//                for (repositoryItem in response.value!!.items){
-//                    Log.e("HomeViewModel","in loop")
-//                    //repository.insertRepository(repositoryItem)
-//                }
-//            }
+            responseLiveData.value=repository.fetchRepositoryApi(query , sort, order, per_page, page)
+            repositoriesLiveData.value= responseLiveData.value?.items
 
         }
-    }
 
-    suspend fun addRepository(repositoryItem: Item){
-        Log.e("HomeViewModel","in loop")
-       repository.insertRepository(repositoryItem)
 
     }
+
+     fun addRepository(repositoryItem: Item){
+         viewModelScope.launch {
+             repository.insertRepository(repositoryItem)
+         }
+
+
+    }
+
+    fun  getRepositories(){
+        repositoriesLiveData.value=repository.getRepositories()
+    }
+
+
+    fun loadData(query: String , sort: String, order: String, per_page: Int) {
+
+         list=repository.fetchRepositoryApi(query , sort, order, per_page).cachedIn(viewModelScope)
+
+
+    }
+
 }

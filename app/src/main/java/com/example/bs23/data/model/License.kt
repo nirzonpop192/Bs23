@@ -3,6 +3,7 @@ package com.example.bs23.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+// todo add table and convert type
 //@Entity(tableName = "License")
 data class License(
     val key: String,

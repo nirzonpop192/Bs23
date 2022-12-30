@@ -7,7 +7,7 @@ import com.example.bs23.data.model.Item
 @Dao
 interface GitRepositoryDao {
     @Query("SELECT * FROM tbRepository")
-    fun getRepository() : LiveData<List<Item>>
+    fun getRepository() : List<Item>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(repositoryItem: Item) : Long
