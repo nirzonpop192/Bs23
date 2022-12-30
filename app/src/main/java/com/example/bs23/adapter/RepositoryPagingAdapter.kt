@@ -19,6 +19,12 @@ class RepositoryPagingAdapter :PagingDataAdapter<Item,RepositoryPagingAdapter.Re
         }
     }
 
+    fun getSize()=itemCount
+
+    fun getAdapterItem(position: Int): Item?{
+        return  getItem(position)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         val view=LayoutInflater.from(parent.context).inflate(R.layout.row_item_repo,parent,false)
         return RepoViewHolder(view)
