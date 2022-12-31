@@ -106,6 +106,10 @@ dependencies {
 
     def paging_version = "3.1.1"
     implementation "androidx.paging:paging-runtime:$paging_version"
+
+    testImplementation "com.google.truth:truth:1.0.1"
+
+    androidTestImplementation "com.google.truth:truth:1.0.1"
 }
 
 // Allow references to generated code
