@@ -12,9 +12,9 @@
 - [Jetpack Navigation] - Navigation refers to the interactions that allow users to navigate across, into, and back out from the different pieces of content within your app
 - [Glide] - An image loading and caching library for Android focused on smooth scrolling
 ### Project Home Page 
-![alt_text](https://github.com/nirzonpop192/Bs23/tree/main/screen_short/home_page.png)
+![alt_text](https://github.com/nirzonpop192/Bs23/tree/main/screen_short/home_page.png?raw=true)
 ### Project Details Page
-![alt_text](https://github.com/nirzonpop192/Bs23/tree/main/screen_short/details_page.png)
+![alt_text](https://github.com/nirzonpop192/Bs23/tree/main/screen_short/details_page.png?raw=true)
 ### Project Architecture 
 This app uses [MVVM (Model View View-Model)] architecture.
 
