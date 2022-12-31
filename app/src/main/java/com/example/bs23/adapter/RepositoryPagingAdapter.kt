@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bs23.R
 import com.example.bs23.data.model.Item
 import com.example.bs23.databinding.RowItemRepoBinding
+import com.example.bs23.util.ExtendedMethod
 
 class RepositoryPagingAdapter :PagingDataAdapter<Item,RepositoryPagingAdapter.RepoViewHolder>(COMPARATOR) {
 
@@ -18,9 +19,10 @@ class RepositoryPagingAdapter :PagingDataAdapter<Item,RepositoryPagingAdapter.Re
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
         val item:Item?= getItem(position)
         item.let {
-            holder.tvName.text= item!!.name
-            holder.tvStar.text= item!!.stargazers_count.toString()
-            holder.tvDate.text= "updated_at "+item!!.updated_at
+            holder.tvName.text= item?.name
+            holder.tvStar.text= item?.stargazers_count.toString()
+            holder.tvDate.text= "updated at "+
+                    ExtendedMethod.formatDateTime(item!!.updated_at)
 
             holder.itemView.setOnClickListener{
                 listener?.onItemClick(item)
