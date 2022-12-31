@@ -11,8 +11,10 @@
 - [DataBinding] - Generates a binding class for each XML layout file present in that module and allows you to more easily write code that interacts with views.
 - [Jetpack Navigation] - Navigation refers to the interactions that allow users to navigate across, into, and back out from the different pieces of content within your app
 - [Glide] - An image loading and caching library for Android focused on smooth scrolling
-### Project Architecture 🗼
-
+### Project Home Page 
+![alt_text](https://github.com/nirzonpop192/Bs23/tree/main/screen_short/home_page.png)
+### Project Details Page
+![alt_text](https://github.com/nirzonpop192/Bs23/tree/main/screen_short/details_page.png)
+### Project Architecture 
 This app uses [MVVM (Model View View-Model)] architecture.
 
-![alt text](https://github.com/KadirKuruca/NewsApp-MVVM-Hilt-Room-Retrofit/blob/master/mvvm_architecture.png?raw=true)
