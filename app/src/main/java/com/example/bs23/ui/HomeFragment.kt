@@ -11,12 +11,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bs23.R
 import com.example.bs23.adapter.OnItemClickListener
 import com.example.bs23.adapter.RepositoryPagingAdapter
+import com.example.bs23.data.model.Item
 import com.example.bs23.databinding.FragmentHomeBinding
 import com.example.bs23.service.ServerJobService
 import com.example.bs23.util.Constant
@@ -70,7 +73,7 @@ class HomeFragment : Fragment() {
     fun setObserver(){
         HomeViewModel.response.observe(viewLifecycleOwner){
             Log.e(TAG, "onResume:  size of dim ${it.items.size}", )
-
+            viewModel.isLoading.value=false
             if(it.items.isNotEmpty()){
                 for (repositoryItem in it.items){
                     Log.e(TAG,"in loop")
@@ -84,7 +87,7 @@ class HomeFragment : Fragment() {
 
         viewModel.pagingDataList.observe(viewLifecycleOwner){
 
-            viewModel.isLoading.value=false
+
             Log.e(TAG, " observing ")
             mAdapter.submitData(lifecycle, it)
             Log.e(TAG, "onResume:  size of adapter ${mAdapter.snapshot().items.size}", )
@@ -122,8 +125,9 @@ class HomeFragment : Fragment() {
         }
 
         mAdapter.setOnItemClickListener(object :OnItemClickListener{
-            override fun onItemClick(position: Int) {
-
+            override fun onItemClick(item: Item) {
+                var bundle = bundleOf("repository" to item)
+                findNavController().navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
             }
         })
 

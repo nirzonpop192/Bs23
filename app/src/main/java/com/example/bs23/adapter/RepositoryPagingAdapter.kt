@@ -23,7 +23,7 @@ class RepositoryPagingAdapter :PagingDataAdapter<Item,RepositoryPagingAdapter.Re
             holder.tvDate.text= "updated_at "+item!!.updated_at
 
             holder.itemView.setOnClickListener{
-                listener?.onItemClick(position)
+                listener?.onItemClick(item)
             }
         }
 

@@ -1,10 +1,14 @@
 package com.example.bs23.data.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
+
 
 @Entity(tableName = "tbRepository")
+@Parcelize
 data class Item(
     var allow_forking: Boolean?,
     var archive_url: String?,
@@ -91,7 +95,7 @@ data class Item(
     var watchers: Int?,
     var watchers_count: Int?,
     var web_commit_signoff_required: Boolean?
-){
+): Parcelable {
     constructor() : this(false,
         "",
         false,

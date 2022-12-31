@@ -1,8 +1,11 @@
 package com.example.bs23.data.model
 
+import android.os.Parcelable
 import androidx.room.Entity
+import kotlinx.parcelize.Parcelize
 
 //@Entity(tableName = "Owner")
+@Parcelize
 data class Owner(
     val avatar_url: String,
     val events_url: String,
@@ -22,4 +25,4 @@ data class Owner(
     val subscriptions_url: String,
     val type: String,
     val url: String
-)
+):Parcelable
