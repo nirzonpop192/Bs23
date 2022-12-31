@@ -20,31 +20,23 @@ class HomeViewModel @Inject constructor( private val repository: HomeRepository 
      var response : MutableLiveData<GitHubResponse> =MutableLiveData()
 
  }
-//     var responseLiveData : MutableLiveData<GitHubResponse> =MutableLiveData()
-     var offLineRepositoriesList : MutableLiveData<List<Item>> =MutableLiveData()
     lateinit var pagingDataList:LiveData<PagingData<Item>>
-/*    fun fetRepositoryApi(query: String , sort: String, order: String, per_page: Int, page: Int) {
 
-        viewModelScope.launch {
-            responseLiveData.value=repository.fetchRepositoryApi(query , sort, order, per_page, page)
-            repositoriesLiveData.value= responseLiveData.value?.items
-
-        }
-
-
-    }*/
 
      fun addRepository(repositoryItem: Item){
          viewModelScope.launch {
              repository.insertRepository(repositoryItem)
          }
 
+     }
 
+    fun deleteAllRepositories(){
+        viewModelScope.launch {
+            repository.deleteAllRepositories()
+        }
     }
 
-    fun  getRepositories(){
-        offLineRepositoriesList.value=repository.getRepositories()
-    }
+
 
     /**
      * load method invoke the pager

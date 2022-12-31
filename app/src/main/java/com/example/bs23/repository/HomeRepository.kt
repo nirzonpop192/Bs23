@@ -43,5 +43,9 @@ class HomeRepository @Inject constructor(
        return doa.getRepository()
     }
 
+    suspend fun deleteAllRepositories (){
+        doa.deleteAllRepository()
+    }
+
 
 }

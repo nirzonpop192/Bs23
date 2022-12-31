@@ -15,6 +15,6 @@ interface GitRepositoryDao {
     @Delete
     suspend fun delete(repositoryItem: Item)
 
-//    @Query("DELETE FROM tbRepository")
-//    suspend fun deleteAllArticles()
+    @Query("DELETE FROM tbRepository")
+    suspend fun deleteAllRepository()
 }
