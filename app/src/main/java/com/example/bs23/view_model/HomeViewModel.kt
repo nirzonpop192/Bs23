@@ -18,8 +18,9 @@ class HomeViewModel @Inject constructor( private val repository: HomeRepository 
 
  companion object{
      var response : MutableLiveData<GitHubResponse> =MutableLiveData()
-//     lateinit var pagingDataList:LiveData<PagingData<Item>>
+
  }
+     var isLoading:MutableLiveData<Boolean> =MutableLiveData()
     lateinit var pagingDataList:LiveData<PagingData<Item>>
 
 
@@ -42,6 +43,7 @@ class HomeViewModel @Inject constructor( private val repository: HomeRepository 
      * load method invoke the pager
      */
     fun loadData(query: String , sort: String, order: String, per_page: Int) {
+        isLoading.value=true
         viewModelScope.launch {
             pagingDataList=repository.fetchRepositoryApi(query , sort, order, per_page).cachedIn(viewModelScope)
 

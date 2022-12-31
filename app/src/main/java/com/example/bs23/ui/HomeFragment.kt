@@ -5,6 +5,7 @@ import android.app.job.JobScheduler
 import android.content.ComponentName
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,7 +32,7 @@ class HomeFragment : Fragment() {
     private val JOB_ID: Int=123
     lateinit var mAdapter: RepositoryPagingAdapter
     private lateinit var jobScheduler: JobScheduler
-   // val viewModel: HomeViewModel by viewModels()
+
     private lateinit var binding: FragmentHomeBinding
     companion object{
          val TAG= HomeFragment::class.java.name
@@ -58,9 +59,8 @@ class HomeFragment : Fragment() {
         if (Constant.SORT_BY.equals(Constant.DATE)) binding.btnSort.text=" sort by star"
 
         else binding.btnSort.text=" sort by date"
-
-
         viewModel.loadData("Android",Constant.SORT_BY,"asc",10)
+
 
         setObserver()
         setListener()
@@ -82,10 +82,18 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.pagingDataList.observe(viewLifecycleOwner){
+
+            viewModel.isLoading.value=false
             Log.e(TAG, " observing ")
             mAdapter.submitData(lifecycle, it)
             Log.e(TAG, "onResume:  size of adapter ${mAdapter.snapshot().items.size}", )
 
+        }
+        viewModel.isLoading.observe(viewLifecycleOwner){
+            if(it)
+                binding.progressBar.visibility=View.VISIBLE
+            else
+                binding.progressBar.visibility=View.INVISIBLE
         }
     }
 
