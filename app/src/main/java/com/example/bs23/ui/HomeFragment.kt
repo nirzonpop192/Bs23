@@ -5,14 +5,12 @@ import android.app.job.JobScheduler
 import android.content.ComponentName
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -78,6 +76,8 @@ class HomeFragment : Fragment() {
                 for (repositoryItem in it.items){
                     Log.e(TAG,"in loop")
                     viewModel.addRepository(repositoryItem)
+                    repositoryItem.license?.let { it1 -> viewModel.addLicense(it1) }
+                    repositoryItem.owner?.let { it1 -> viewModel.addOwner(it1) }
 
 
                 }
@@ -113,7 +113,7 @@ class HomeFragment : Fragment() {
 
     fun setListener(){
         binding.btnSort.setOnClickListener {
-            viewModel.deleteAllRepositories()
+            viewModel.deleteAllRecords()
 
             if (Constant.SORT_BY.equals(Constant.DATE)) Constant.SORT_BY = Constant.STARS
 

@@ -1,9 +1,7 @@
 package com.example.bs23.data.model
 
 import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.room.*
 import kotlinx.parcelize.Parcelize
 
 
@@ -59,7 +57,8 @@ data class Item(
     var labels_url: String?,
     var language: String?,
     var languages_url: String?,
-    @Ignore
+    @Embedded
+    @TypeConverters(DataConverter::class)
     var license: License?,
     var merges_url: String?,
     var milestones_url: String?,
@@ -69,9 +68,10 @@ data class Item(
     var notifications_url: String?,
     var open_issues: Int?,
     var open_issues_count: Int?,
-    @Ignore
+    @Embedded
+    @TypeConverters(DataConverter::class)
     var owner: Owner?,
-    var private: Boolean??,
+    var private: Boolean?,
     var pulls_url: String?,
     var pushed_at: String?,
     var releases_url: String?,

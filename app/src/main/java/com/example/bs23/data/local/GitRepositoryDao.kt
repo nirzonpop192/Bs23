@@ -1,6 +1,5 @@
 package com.example.bs23.data.local
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.bs23.data.model.Item
 
@@ -16,5 +15,5 @@ interface GitRepositoryDao {
     suspend fun delete(repositoryItem: Item)
 
     @Query("DELETE FROM tbRepository")
-    suspend fun deleteAllRepository()
+    suspend fun deleteAll()
 }

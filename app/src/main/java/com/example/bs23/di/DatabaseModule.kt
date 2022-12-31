@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import com.example.bs23.data.local.GitRepositoryDao
 import com.example.bs23.data.local.GitRepositoryDataBase
+import com.example.bs23.data.local.LicenseDao
+import com.example.bs23.data.local.OwnerDao
 import com.example.bs23.util.Constant
 import dagger.Module
 import dagger.Provides
@@ -33,4 +35,14 @@ class DatabaseModule {
     fun provideGitRepositoryDoa(database:GitRepositoryDataBase):GitRepositoryDao{
         return database.getGitRepositoryDao()
     }
+    @Provides
+    fun provideLicenseDoa(database:GitRepositoryDataBase): LicenseDao {
+        return database.getLicenseDao()
+    }
+
+    @Provides
+    fun provideOwnerDoa(database:GitRepositoryDataBase): OwnerDao {
+        return database.getOwnerDao()
+    }
+
 }
