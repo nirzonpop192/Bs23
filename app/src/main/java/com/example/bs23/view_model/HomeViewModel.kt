@@ -14,11 +14,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor( private val repository: HomeRepository ) :ViewModel(){
+class HomeViewModel @Inject constructor( private val repository: HomeRepository ) :ViewModel(),ServiceInvokinListerner{
 
  companion object{
      var response : MutableLiveData<GitHubResponse> =MutableLiveData()
-
+//     lateinit var pagingDataList:LiveData<PagingData<Item>>
  }
     lateinit var pagingDataList:LiveData<PagingData<Item>>
 
@@ -49,4 +49,8 @@ class HomeViewModel @Inject constructor( private val repository: HomeRepository 
 
     }
 
+    override fun invokeApi(query: String, sort: String, order: String, per_page: Int) {
+        pagingDataList=repository.fetchRepositoryApi(query , sort, order, per_page).cachedIn(viewModelScope)
+
+    }
 }
