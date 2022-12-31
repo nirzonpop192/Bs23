@@ -1,4 +1,5 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,26 +13,28 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/tv_price"
+            android:id="@+id/tv_star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:text="1" />
+            tools:text="1"
+            app:drawableLeftCompat="@drawable/ic_star" />
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@id/tv_price"
+            android:layout_toStartOf="@id/tv_star"
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             tools:text="Title" />
 
         <TextView
-            android:id="@+id/tv_symbole"
+            app:drawableLeftCompat="@drawable/ic_date"
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_name"

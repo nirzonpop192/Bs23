@@ -16,14 +16,12 @@ class RepositoryPagingAdapter :PagingDataAdapter<Item,RepositoryPagingAdapter.Re
         val item:Item?= getItem(position)
         item.let {
             holder.tvName.text= item!!.name
+            holder.tvStar.text= item!!.stargazers_count.toString()
+            holder.tvDate.text= "updated_at "+item!!.updated_at
         }
     }
 
-    fun getSize()=itemCount
 
-    fun getAdapterItem(position: Int): Item?{
-        return  getItem(position)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         val view=LayoutInflater.from(parent.context).inflate(R.layout.row_item_repo,parent,false)
@@ -32,6 +30,8 @@ class RepositoryPagingAdapter :PagingDataAdapter<Item,RepositoryPagingAdapter.Re
 
     class RepoViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         val tvName=itemView.findViewById<TextView>(R.id.tv_name)
+        val tvStar=itemView.findViewById<TextView>(R.id.tv_star)
+        val tvDate =itemView.findViewById<TextView>(R.id.tv_date)
     }
 
     companion object{

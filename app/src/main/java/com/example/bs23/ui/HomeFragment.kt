@@ -49,6 +49,14 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
+        if (Constant.SORT_BY.equals(Constant.DATE)){
+            binding.btnSort.text=" sort by star"
+        }
+        else{
+
+            binding.btnSort.text=" sort by date"
+         
+        }
         viewModel.loadData("Android",Constant.SORT_BY,"asc",10)
 
         setObserver()
@@ -89,16 +97,16 @@ class HomeFragment : Fragment() {
     }
 
     fun setListener(){
-        binding.floatingActionButton.setOnClickListener {
+        binding.btnSort.setOnClickListener {
             viewModel.deleteAllRepositories()
 //            viewModel.loadData("Android","date","dsc",10)
             if (Constant.SORT_BY.equals(Constant.DATE)){
-                binding.floatingActionButton.setImageResource(R.drawable.ic_date)
+                binding.btnSort.text=" sort by star"
                 Constant.SORT_BY = Constant.STARS
-        }
+            }
             else{
-                binding.floatingActionButton.setImageResource(R.drawable.ic_date)
 
+                binding.btnSort.text=" sort by date"
                 Constant.SORT_BY= Constant.DATE
             }
 
@@ -106,10 +114,8 @@ class HomeFragment : Fragment() {
             val id = findNavController().currentDestination?.id
             findNavController().popBackStack(id!!,true)
             findNavController().navigate(id)
-//            Handler().postDelayed( Runnable {
-//               },1000)
-
         }
+
     }
 
 
