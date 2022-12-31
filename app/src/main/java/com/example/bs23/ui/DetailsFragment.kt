@@ -2,16 +2,16 @@ package com.example.bs23.ui
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
-import com.example.bs23.R
+import androidx.fragment.app.Fragment
 import com.example.bs23.data.model.Item
 import com.example.bs23.databinding.FragmentDetailsBinding
-import com.example.bs23.databinding.FragmentHomeBinding
-import com.example.bs23.view_model.HomeViewModel
+import com.example.bs23.util.ExtendedMethod
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class DetailsFragment : Fragment() {
@@ -31,7 +31,7 @@ class DetailsFragment : Fragment() {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
          item =arguments?.getParcelable<Item>("repository")
-        Log.e("dim", "onCreateView: ${item?.name}", )
+        Log.e("dim", "onCreateView: ${item?.name}")
         return binding.root
     }
 
@@ -39,7 +39,11 @@ class DetailsFragment : Fragment() {
         super.onResume()
         binding.tvTitle.text=item?.name
         binding.tvDescription.text=item?.description
+        binding.tvUpdateAt.text=ExtendedMethod.formatDateTime(item?.updated_at)
+
+
     }
+
 
 
 }
