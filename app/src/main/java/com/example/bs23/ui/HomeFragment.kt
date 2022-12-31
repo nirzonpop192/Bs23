@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.bs23.adapter.OnItemClickListener
 import com.example.bs23.adapter.RepositoryPagingAdapter
 import com.example.bs23.databinding.FragmentHomeBinding
 import com.example.bs23.service.ServerJobService
@@ -119,6 +120,12 @@ class HomeFragment : Fragment() {
             findNavController().popBackStack(id!!,true)
             findNavController().navigate(id)
         }
+
+        mAdapter.setOnItemClickListener(object :OnItemClickListener{
+            override fun onItemClick(position: Int) {
+
+            }
+        })
 
     }
 

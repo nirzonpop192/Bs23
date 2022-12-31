@@ -13,13 +13,24 @@ import com.example.bs23.databinding.RowItemRepoBinding
 
 class RepositoryPagingAdapter :PagingDataAdapter<Item,RepositoryPagingAdapter.RepoViewHolder>(COMPARATOR) {
 
+    
+    var listener:OnItemClickListener?=null
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
         val item:Item?= getItem(position)
         item.let {
             holder.tvName.text= item!!.name
             holder.tvStar.text= item!!.stargazers_count.toString()
             holder.tvDate.text= "updated_at "+item!!.updated_at
+
+            holder.itemView.setOnClickListener{
+                listener?.onItemClick(position)
+            }
         }
+
+    }
+
+    fun setOnItemClickListener(listener:OnItemClickListener){
+        this.listener=listener
     }
 
 
