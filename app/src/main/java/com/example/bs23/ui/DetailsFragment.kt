@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.bs23.data.model.Item
 import com.example.bs23.databinding.FragmentDetailsBinding
 import com.example.bs23.util.ExtendedMethod
@@ -39,9 +40,10 @@ class DetailsFragment : Fragment() {
         super.onResume()
         binding.tvTitle.text=item?.name
         binding.tvDescription.text=item?.description
+        binding.tvOwnerName.text=item?.owner?.login
         binding.tvUpdateAt.text=ExtendedMethod.formatDateTime(item?.updated_at)
 
-
+        Glide.with(this).load(item?.owner?.avatar_url).into(binding.ivOwnerAvatar);
     }
 
 
