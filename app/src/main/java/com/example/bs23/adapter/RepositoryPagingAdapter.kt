@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bs23.R
 import com.example.bs23.data.model.Item
+import com.example.bs23.databinding.RowItemRepoBinding
 
 class RepositoryPagingAdapter :PagingDataAdapter<Item,RepositoryPagingAdapter.RepoViewHolder>(COMPARATOR) {
 
@@ -24,14 +25,14 @@ class RepositoryPagingAdapter :PagingDataAdapter<Item,RepositoryPagingAdapter.Re
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
-        val view=LayoutInflater.from(parent.context).inflate(R.layout.row_item_repo,parent,false)
-        return RepoViewHolder(view)
+       val binding = RowItemRepoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return RepoViewHolder(binding)
     }
 
-    class RepoViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
-        val tvName=itemView.findViewById<TextView>(R.id.tv_name)
-        val tvStar=itemView.findViewById<TextView>(R.id.tv_star)
-        val tvDate =itemView.findViewById<TextView>(R.id.tv_date)
+    class RepoViewHolder(val  binding:RowItemRepoBinding):RecyclerView.ViewHolder(binding.root){
+        val tvName=binding.tvName
+        val tvStar=binding.tvStar
+        val tvDate = binding.tvDate
     }
 
     companion object{
