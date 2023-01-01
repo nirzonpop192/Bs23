@@ -11,8 +11,9 @@ import javax.inject.Singleton
 @Singleton
 object NetworkManager {
 
-    fun isNetConnectionAvailable(context: Context): Boolean {
-
+    fun isNetConnectionAvailable(context: Context?): Boolean {
+        if(context==null)
+            return false
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
         if (capabilities != null) {

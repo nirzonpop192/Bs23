@@ -6,12 +6,17 @@ import org.junit.Test
 
 internal class NetworkManagerTest{
     @Test
-    fun testConnection(){
+    fun testConnectionWithValidContext(){
 
         val context = InstrumentationRegistry.getInstrumentation().context
         val result = NetworkManager.isNetConnectionAvailable(context)
 
-
         assertThat(result).isTrue()
+    }
+
+    @Test
+    fun testConnectionWithInvalidContext(){
+        val result = NetworkManager.isNetConnectionAvailable(null)
+        assertThat(result).isFalse()
     }
 }
